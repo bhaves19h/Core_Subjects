@@ -31,3 +31,32 @@ ACID stands for Atomicity, Consistency, Isolation, and Durability in a DBMS thes
 Normalization is a process of reducing redundancy by organizing the data into multiple tables. Normalization leads to better usage of disk spaces and makes it easier to maintain the integrity of the database.  
 
 Denormalization is the reverse process of normalization as it combines the tables which have been normalized into a single table so that data retrieval becomes faster. JOIN operation allows us to create a denormalized form of the data by reversing the normalization.
+
+
+
+1. Difference between WHERE and HAVING
+WHERE is used to filter rows before any grouping or aggregation happens in the query. It works on individual records and cannot use aggregate functions like COUNT, SUM, or AVG. HAVING is applied after GROUP BY and is meant for filtering aggregated results. For example, filtering orders by status goes in WHERE, but filtering customers with total orders greater than 5 goes in HAVING. Using HAVING instead of WHERE usually makes queries slower and harder to read. A good rule is to filter early using WHERE whenever possible.
+
+
+ 
+
+2. INNER JOIN vs LEFT JOIN and when LEFT JOIN behaves like INNER JOIN
+An INNER JOIN returns only rows that exist in both tables. A LEFT JOIN returns all rows from the left table, even if there is no matching row on the right side. However, a LEFT JOIN can accidentally behave like an INNER JOIN if you add conditions on the right table in the WHERE clause. This removes rows where the right table values are NULL. To avoid this issue, conditions related to the right table should be written inside the ON clause. This mistake is very common in real production queries.
+
+
+ 
+
+3. What causes duplicate rows after a JOIN, and how to fix it
+Duplicate rows usually appear when one row in a table matches multiple rows in another table. This often happens in one-to-many relationships, like customers and orders. SQL is doing the correct thing, but the result may look wrong if you are not expecting multiple matches. To fix this, you can aggregate the data before joining or ensure you are joining on the correct keys. Sometimes DISTINCT helps, but it can hide real data issues. Understanding the data structure is more important than forcing uniqueness.
+
+
+ 
+
+4. What is a correlated subquery, and when is slower than a JOIN
+A correlated subquery is a subquery that depends on values from the outer query. It runs once for each row returned by the main query. Because of this repeated execution, it can be slow on large datasets. In many cases, the same logic can be written using a JOIN, which executes more efficiently. Correlated subqueries are easier to write for simple logic, but can cause performance issues. They are best avoided in high-volume production queries.
+
+
+ 
+
+5. UNION vs UNION ALL from a performance viewpoint
+UNION combines results from multiple queries and removes duplicate rows from the final output. To do this, the database has to sort and compare rows, which takes extra time. UNION ALL simply appends the results without checking for duplicates. Because of this, UNION ALL is faster and uses fewer resources. If you are sure that the datasets do not overlap, UNION ALL should always be preferred. In real-world systems, UNION ALL is commonly used for better performance.
