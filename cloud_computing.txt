@@ -1,0 +1,25 @@
+# Key Cloud Computing Terms
+
+## 1. Cloud Computing
+Cloud computing is the delivery of computing services over the internet, providing storage, processing power, and software applications on demand.
+
+## 2. IaaS (Infrastructure as a Service)
+IaaS provides virtualized computing resources over the internet, allowing users to rent servers and storage on a pay-as-you-go basis.
+
+## 3. PaaS (Platform as a Service)
+PaaS offers a platform allowing customers to develop, run, and manage applications without the complexity of building and maintaining the infrastructure.
+
+## 4. SaaS (Software as a Service)
+SaaS delivers software applications over the internet on a subscription basis, eliminating the need for installation or maintenance.
+
+## 5. Private Cloud
+A private cloud is a cloud computing environment dedicated to a single organization, providing more control over data and security.
+
+## 6. Public Cloud
+Public cloud services are offered over the internet and shared among multiple organizations, managed by third-party providers.
+
+## 7. Hybrid Cloud
+A hybrid cloud combines public and private cloud elements, allowing data and applications to be shared between them.
+
+## 8. Scalability
+Scalability is the ability to adjust resources and services based on demand, ensuring efficient use of resources.
